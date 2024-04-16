@@ -72,8 +72,9 @@ class ProductController extends Controller
         try {
             $updateProduct = $this->productRepository->update($data, $id);
             if (!$updateProduct) {
-                throw new \Exception('Product creation failed');
+                throw new \Exception('Product Update Failed');
             }
+            DB::commit();
             return ApiResponseClass::sendResponseWithData(new ProductResource($updateProduct), "Successfully Update Product", 200);
         }catch (\Exception $e){
             return ApiResponseClass::rollback($e);

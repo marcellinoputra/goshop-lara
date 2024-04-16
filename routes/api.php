@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LocationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +18,7 @@ use App\Http\Controllers\AuthController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('users/sign-in', 'login');
+    Route::post('users/sign-up', 'register');
 });
 
 Route::controller(ProductController::class)->group(function () {
@@ -25,4 +27,12 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('product', 'store');
     Route::put('product/edit/{id}', 'update');
     Route::delete('product/delete/{id}', 'delete');
+});
+
+Route::controller(LocationController::class)->group(function() {
+    Route::get('location', 'index');
+    Route::get('location/{id}', 'getById');
+    Route::post('location', 'store');
+    Route::put('location/edit/{id}', 'update');
+    Route::delete('location/delete/{id}', 'delete');
 });

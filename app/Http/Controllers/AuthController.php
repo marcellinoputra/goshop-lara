@@ -51,9 +51,6 @@ class AuthController extends Controller
     public function login(AuthSignInRequest $request)
     {
         $data = $request->validated();
-
-//        $credential = $request->only('username', 'password');
-
         $token = Auth::attempt($data);
 
         if (!$token) {
